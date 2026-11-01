@@ -67,7 +67,7 @@ I created the two required users (`codi` and `Jack`):
   useradd -m -G wheel -s /bin/bash codi
   passwd codi
   useradd -m -G wheel -s /bin/bash Jack
-  passwd Jack```
+  passwd Jack
 I enabled sudo permissions by running `EDITOR=nano visudo` and removing the `#` from the `%wheel ALL=(ALL:ALL) ALL` line.
 
 ## 8. Bootloader & Networking (ARM Specific)
@@ -77,7 +77,7 @@ AND added the `--removable` flag, which forces GRUB to install to a default fall
   ```bash
   pacman -S grub efibootmgr dosfstools mtools
   grub-install --target=arm64-efi --efi-directory=/boot/efi --bootloader-id=ARCH --recheck --removable
-  grub-mkconfig -o /boot/grub/grub.cfg```
+  grub-mkconfig -o /boot/grub/grub.cfg
 I installed SSH and NetworkManager, enabled them, and rebooted.
 
 ## 9. Post-Installation Modifications (GUI, Shell, Aliases)
@@ -87,7 +87,7 @@ I logged in as `Jack`.
 I installed Zsh and the color plugins:
   ```bash
   sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions
-  chsh -s /usr/bin/zsh```
+  chsh -s /usr/bin/zsh
 I opened `~/.zshrc` with nano and added the source lines for the highlighting and auto-suggestions.
 **Verify:** `echo $SHELL` shows `/usr/bin/zsh`.
 
@@ -96,7 +96,7 @@ I added these aliases to the bottom of `~/.zshrc`:
   ```bash
   alias ll='ls -alF'
   alias update='sudo pacman -Syu'
-  alias ..='cd ..'```
+  alias ..='cd ..'
 **Verify:** I ran `source ~/.zshrc` and typed `ll`. It worked and showed colors.
 **Cautious:** The default shell is bash, ensure it is zsh. If not perform `chsh -s /usr/bin/zsh`.
 
@@ -104,7 +104,7 @@ I added these aliases to the bottom of `~/.zshrc`:
 I installed Xorg, LXQt, and SDDM:
   ```bash
   sudo pacman -S xorg xorg-server lxqt breeze-icons sddm
-  sudo systemctl enable sddm```
+  sudo systemctl enable sddm
 **Verify:** I rebooted and the system booted straight into the SDDM graphical login screen. I logged into the LXQt desktop.
 
 ## 10. Final Verification Checklist
