@@ -33,7 +33,7 @@ Partitioned the disk using `gdisk /dev/vda`:
   mkfs.fat -F32 /dev/vda1
   mkswap /dev/vda2
   swapon /dev/vda2
-  mkfs.ext4 -F /dev/vda3```
+  mkfs.ext4 -F /dev/vda3
 Next, I mounted the drives to /mnt and /mnt/boot/efi so the installer had a place to put the files.
 
 ## 5. Base Installation
@@ -51,7 +51,7 @@ I had to manually mount the virtual filesystems, install `coreutils`, and use th
   mount --bind /proc /mnt/proc
   mount --bind /sys /mnt/sys
   pacman -Sy coreutils
-  chroot /mnt /bin/bash```
+  chroot /mnt /bin/bash
 
 **Another Issue:** Once I was inside the chroot, `pacman` couldn't connect to the internet. I realized the `chroot` command didn't copy over my DNS settings.
 **Fix:** I fixed this by running `echo "nameserver 8.8.8.8" > /etc/resolv.conf`.
